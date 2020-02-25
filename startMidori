@@ -1,0 +1,72 @@
+#!/bin/bash
+
+cpt=0
+xset -dpms   # disable DPMS (Energy Star) features.
+xset s off    # disable screen saver
+xset s noblank # don't blank the video device
+sleep 5 
+unclutter &
+sleep 5
+matchbox-window-manager &
+
+logger debut du script
+# si le fichier des URL ne contient qu'une ligne on lance midori en fullscreen
+liste_url=''
+#logger $liste_url
+for WORD in `cut -d ' ' -f 1 /home/pi/url.txt|grep -v '^#'`
+do
+  liste_url="$liste_url$WORD "
+done
+
+for WORD in `grep -v '^#' /home/pi/url.txt | cut -d ' ' -f 2`
+do
+  tableau[$cpt]=$WORD
+  cpt=$((cpt+1))
+done
+longueur_tableau=$cpt
+
+
+#logger $liste_url
+#echo attention
+#echo $liste_url
+sleep 5
+
+#liste_url="http://192.168.235.241:8081/#/monitor http://disk_check.xamance.net/ http://tls-check.xamance.net/ http://monitoring:monitoring2xamance@monitoring01.xamance.net:8443/ http://monitoring:monitoring2xamance@monitoring01.xamance.net/cactiview/ http://www.cert.ssi.gouv.fr/ http://domain-check.xamance.net/php/index.php http://fl-ubuntu.xamance.net/comptearebours.php http://cacti.xamance.net:8443/raspberry_autologin.php"
+#liste_url="http://192.168.235.241:8081/#/monitor http://disk_check.xamance.net/ http://tls-check.xamance.net/  http://www.cert.ssi.gouv.fr/ http://domain-check.xamance.net/php/index.php http://fl-ubuntu.xamance.net/comptearebours.php"
+logger $liste_url
+
+
+#midori -p  $liste_url &
+midori   $liste_url &
+
+sleep 300
+
+export DISPLAY=':0'
+sleep 1
+xdotool keydown F11
+xdotool keyup F11
+sleep 1
+cpt=0
+while true;do
+  xdotool keydown ctrl+Tab
+  xdotool keyup ctrl+Tab
+  sleep 1
+  #sleep $tableau[$cpt]
+  if [ $cpt -lt 10 ]
+     then
+    sleep $cpt
+    sleep $cpt
+    sleep $cpt
+  else 
+    cpt=0	
+  fi
+ #let cpt=$cpt+1
+cpt=$((cpt+1)) 
+#if [ $cpt -eq $longueur_tableau ]
+ #  cpt=0
+ #fi
+
+ logger $cpt
+#  logger $cpt 
+done
+ 
