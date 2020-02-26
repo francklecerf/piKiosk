@@ -1,0 +1,3 @@
+http://kpi.xamance.net:80/goto/01bdb3565a4a4e98bfdc306e8fc5352c 20 1
+http://monitoring01.xamance.net/Naglite3/ 20 1
+#http://fl-ubuntu.xamance.net/comptearebours.php 10 1

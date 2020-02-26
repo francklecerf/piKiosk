@@ -1,0 +1,2 @@
+http://monitoring01.xamance.net/Naglite3/ 1 1
+http://monitoring01.xamance.net/Naglite3/ 11 1

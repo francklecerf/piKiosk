@@ -1,0 +1,15 @@
+#fichier contenant la liste des sites à afficher sur les kiosks (écran de supervision)
+# La liste d'URL doit être formatté comme suit : 
+# URL;durée d'affichage;frequence de rafraichissement
+# URL = URL du site à afficher
+# durée d'affichage = temps pendant lequel le site reste affiché
+# fréquence de raffraichissement = nombre d'affichage au bout duquel on rafraichis la page (0= jamais, 1= à chaque fois, 2 une fois sur 2 ...)
+#http://fl-ubuntu.xamance.net/comptearebours.php 1 1
+#http://monitoring01.xamance.net/cactiview/ 60 0
+http://192.168.235.241:8081/#/monitor 60 3
+http://disk_check.xamance.net/ 20 2
+http://tls-check.xamance.net/ 30 0
+http://www.cert.ssi.gouv.fr/ 70 1
+http://domain-check.xamance.net/php/index.php 80 0
+http://monitoring01.xamance.net:8443/cacti/graph.php?action=view&rra_id=all&local_graph_id=856 50 0
+http://monitoring01.xamance.net:8443/raspberry_autologin.php 1 0

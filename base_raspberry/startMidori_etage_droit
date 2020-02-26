@@ -1,0 +1,25 @@
+#!/bin/sh
+xset -dpms     # disable DPMS (Energy Star) features.
+xset s off       # disable screen saver
+xset s noblank # don't blank the video device
+sleep 5 
+unclutter &
+matchbox-window-manager &
+
+
+midori  http://192.168.235.241:8081/#/monitor http://disk_check.xamance.net/ http://tls-check.xamance.net/ http://cacti.xamance.net:8443/raspberry_autologin.php http://monitoring:monitoring2xamance@monitoring01.xamance.net/cactiview/ http://www.cert.ssi.gouv.fr/ http://domain-check.xamance.net/php/index.php http://fl-ubuntu.xamance.net/comptearebours.php & 
+
+sleep 120 
+
+
+export DISPLAY='0:0'
+xdotool keydown F11
+xdotool keyup F11
+while true;do
+   xdotool keydown ctrl+Tab
+   xdotool keyup ctrl+Tab
+   sleep 60
+done
+
+xdotool keydown ctrl+Tab; xdotool keyup ctrl+Tab
+logger "fin du fichier"
